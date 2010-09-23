@@ -49,7 +49,7 @@ var runTests = function() {
                         children.push(el.childNodes[i]);
                     }
                 }
-                
+
                 return children;
             },
             getElementsByClassName: function (clz, tag, root) {
@@ -152,7 +152,7 @@ var runTests = function() {
                 Assert.isTrue(Selector.test(Y.Dom.get('test-lang-en-us'), '[lang|=en]'), '[lang|=en] (lang="en-us")');
                 Assert.isTrue(Selector.test(Y.Dom.get('test-lang-en'), '[lang|=en]'), '[lang|=en] (lang="en")');
                 Assert.isFalse(Selector.test(Y.Dom.get('test-lang-none'), '[lang|=en]'), '[lang|=en] false pos');
-                
+
                 Assert.isFalse(Selector.test(Y.Dom.get('checkbox-unchecked'), 'for [type=checkbox]'), 'for [type=checkbox] false pos');
                 Assert.isTrue(Selector.test(Y.Dom.get('checkbox-unchecked'), 'form [type=checkbox]'), 'form [type=checkbox]');
                 Assert.isFalse(Selector.test(Y.Dom.get('checkbox-unchecked'), 'for [type=checkbox]'), 'for [type=checkbox] false pos');
@@ -188,7 +188,7 @@ var runTests = function() {
                 Assert.isTrue(Selector.test(Y.DOM.byId('foo-bar'), 'input#foo-bar', form));
                 Assert.isFalse(Selector.test(Y.DOM.byId('foo-bar'), '#test-inputs input#foo-bar', form));
                 Assert.isTrue(Selector.test(Y.DOM.byId('foo-bar'), '#test-inputs input#foo-bar', form.parentNode));
-                
+
             },
 
             testRootQuery: function() {
@@ -197,7 +197,7 @@ var runTests = function() {
                 ArrayAssert.itemsAreEqual(all, $('li', document), 'document');
                 ArrayAssert.itemsAreEqual(all, $('#root-test li'), 'document');
                 ArrayAssert.itemsAreEqual([], $('#root-tes li', Y.DOM.byId('demo')), 'false id document');
-                
+
                 //sys.puts('##------------------------------------------------------');
                 //sys.puts(sys.inspect(Y.DOM.byId('mod1')));
                 //sys.puts(sys.inspect($('a span, a', Y.DOM.byId('mod1'))));
@@ -206,14 +206,14 @@ var runTests = function() {
                 Assert.areEqual(
                     $('a span, a', Y.DOM.byId('mod1')).length,
                     $('a, a span', Y.DOM.byId('mod1')).length,
-                    "$('a, a span') === $('a span, a')"); 
+                    "$('a, a span') === $('a span, a')");
 
                 var node = document.createElement('div');
                 node.innerHTML = '<li><em>foo</em></li>';
                 Assert.areEqual(node.getElementsByTagName('em')[0], $('li em', node, true), 'off-dom: li em');
                 Assert.isNull($('div li em', node, true), 'off-dom: div li em');
-                
-                Assert.areEqual(Y.DOM.byId('test:colon').getElementsByTagName('h2')[0], 
+
+                Assert.areEqual(Y.DOM.byId('test:colon').getElementsByTagName('h2')[0],
                     $('h2', Y.DOM.byId('test:colon'), true),
                     "$('h2', Y.DOM.byId('test:colon'), true)");
 
@@ -223,7 +223,7 @@ var runTests = function() {
                 // based on non-standard behavior
                 ArrayAssert.itemsAreEqual([], $('body p', document.body), "$('body p', document.body)");
                 ArrayAssert.itemsAreEqual([], $('#root-test li', Y.Dom.get('nth-test')), 'id selector w/root false pos');
-                
+
             },
             testNthType: function() {
                 var all = Y.Dom.get('nth-test').getElementsByTagName('li');
@@ -333,7 +333,7 @@ var runTests = function() {
                 Assert.areEqual(Y.DOM.byId('href-test'), $('[href$=".html"]', null, true), "$('[href$=\".html\"]')");
                 Assert.isNull($('[href$="?html"]', null, true), "$('[href$=\?html\]')");
                 /*Selector fails this already..
-                Assert.areEqual(Y.DOM.byId('test:colon'), 
+                Assert.areEqual(Y.DOM.byId('test:colon'),
                     $('#test\\:colon', null, true),
                     "$('#test\\:colon', null, true)");
                 */
@@ -480,16 +480,16 @@ var runTests = function() {
 
     Y.log('JSDom testing..');
     //sys.puts('Inside1: ' + sys.inspect(process.memoryUsage()));
-    fs.readFile('./selector.html', encoding="utf-8", function(err, data) {
+    fs.readFile(__dirname + '/selector.html', encoding="utf-8", function(err, data) {
         ///Y.log(data);
         document.body.innerHTML = data;
         //Y.log(document.body.outerHTML);
-        
+
         Y.log('Document loaded, run tests..');
         runTests();
     });
 
-    
+
 
 
 
