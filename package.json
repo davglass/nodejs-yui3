@@ -19,10 +19,11 @@
     "bin" : { "yui3docs" : "./cli.js" },
     "dependencies": {
         "yui3-core": ">=3.2.0",
-        "jsdom": ">=0.1.10", 
+        "jsdom": ">=0.1.10",
         "htmlparser": ">=1.6.2",
         "express": ">=1.0.0rc1",
-        "connect": ">=0.2.4"
+        "connect": ">=0.2.4",
+        "yui3" : ">=0.5.8"
     },
     "licenses":[
         {
