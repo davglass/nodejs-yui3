@@ -81,18 +81,18 @@ var runTests = function() {
             test_setText: function() {
                 var node = document.createElement('div'),
                     content = 'testing text content';
-                
+
                 document.body.appendChild(node);
                 Y.DOM.setText(node, content);
 
                 Assert.areEqual(content, Y.DOM.getText(node, content), 'setText("' + content + '")');
-                
+
                 content = '<div>testing text content</div>';
                 Y.DOM.setText(node, content);
                 //TODO, is this test valid? textContent should not contain HTML??
                 Assert.areEqual(content, Y.DOM.getText(node, content), 'setText("' + content + '")');
-                
-                
+
+
 
 
                 content = '  testing     text      content    ';
@@ -112,7 +112,7 @@ var runTests = function() {
                     return node.className === 'mod';
                 }), 'children(main, fn)');
 */
-            },           
+            },
             test_getStyle: function() {
              //   Assert.areEqual('left',
                //         Y.DOM.getStyle(foo, 'float'), 'getStyle(foo, "float")');
@@ -124,7 +124,7 @@ var runTests = function() {
 
                 Assert.areEqual('static',
                         Y.DOM.getStyle(doc, 'position'), 'doc, position');
-            },            
+            },
 
             test_setStyle: function() {
                 Y.DOM.setStyle(ft, 'opacity', 0.5);
@@ -149,7 +149,7 @@ var runTests = function() {
 
                 Y.DOM.setStyle(ft, 'display', 'none');
                 Assert.areEqual('none', Y.DOM.getStyle(ft, 'display'), "Y.DOM.setStyle(ft, 'display', 'none')");
-                
+
                 /*
                 Y.DOM.setStyle(ft, 'display', null);
                 Assert.areEqual('block', Y.DOM.getStyle(ft, 'display'), "Y.DOM.setStyle(ft, 'display', null)");
@@ -359,7 +359,7 @@ var runTests = function() {
 
                 html = '<option>foo</option>';
                 el = Y.DOM.create(html);
-                
+
                 document.getElementById('test-select').appendChild(el);
                 Assert.isFalse(el.selected, 'el.selected');
 
@@ -456,7 +456,7 @@ var runTests = function() {
                 // textarea
                 id = 'test-textarea-textvalue';
                 val = 'textarea text';
-                
+
                 Assert.areEqual(val, Y.DOM.getValue(Y.DOM.byId(id)), id);
 
                 Y.DOM.setValue(Y.DOM.byId(id), 'new value');
@@ -692,21 +692,21 @@ var runTests = function() {
 
                 rgb = "rgb(97, 56, 11)" ;
                 hex = Y.Color.toHex(rgb);
-                Assert.areSame(hex, "#61380B", " shoudl be #61380B"); 
+                Assert.areSame(hex, "#61380B", " shoudl be #61380B");
 
                 rgb = "rgb(11, 97, 11)" ; // 0B610B
                 hex = Y.Color.toHex(rgb);
-                Assert.areSame(hex, "#0B610B", " shoudl be #0B610B"); 
+                Assert.areSame(hex, "#0B610B", " shoudl be #0B610B");
 
                 rgb = "rgb(56, 11, 97)" ; //380B61
                 hex = Y.Color.toHex(rgb);
-                Assert.areSame(hex, "#380B61", " shoudl be #380B61"); 
+                Assert.areSame(hex, "#380B61", " shoudl be #380B61");
 
                 rgb = "rgb(97, 11, 56)" ; //610B38
                 hex = Y.Color.toHex(rgb);
                 Assert.areSame(hex, "#610B38", " shoudl be #610B38");
             }
-        })); 
+        }));
         Y.Test.Runner.add(suite);
 
         Y.Test.Runner.run();
@@ -717,13 +717,13 @@ var runTests = function() {
 
     Y.log('JSDom testing..');
     //sys.puts('Inside1: ' + sys.inspect(process.memoryUsage()));
-    fs.readFile('./dom.html', encoding="utf-8", function(err, data) {
+    fs.readFile(__dirname + '/dom.html', encoding="utf-8", function(err, data) {
         ///Y.log(data);
         document.body.innerHTML = data;
         //Y.log(document.body);
-        
+
         Y.log('Document loaded, run tests..');
-        
+
         var ids = document._ids,
             count = 0;
         for (var i in ids) {
@@ -731,11 +731,11 @@ var runTests = function() {
             count++;
         }
         sys.puts('# of ids: ' + count);
-        
+
         runTests();
     });
 
-    
+
 
 
 
