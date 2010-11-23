@@ -1,7 +1,38 @@
+<style>
+	h3 {
+		background: pink;
+	}
+</style>
+
 Above normal content
 <hr>
+
+<script>alert('hi');</script>
+
+{above_content}
 <div id="content">
 
 </div>
 <hr>
 Below normal content
+<style>
+	h2 {
+		background: yellow;
+	}
+</style>
+<script>
+	// this is a test to ensure I can put brackets in here
+	(function() {
+		
+		document.write('<p>a script tag below normal content did this</p>');
+		
+		/*
+		YUI({filter:"debug"}).use("*", function(Y) {     Y.Dali.Platform.init({
+	        debug: true,
+	        props: { proxyUrl: "/proxy" },
+	        mods: [{"props":{"ns":"mods_module1","type":"mods_module1","id":"mods_module1","model":{}},"state":{"view":"dalidefault"}},{"props":{"ns":"mods_module2","type":"mods_module2","id":"mods_module2","model":{}},"state":{"view":"dalidefault"}}]
+	    }, true);});
+		*/
+		
+	}());
+</script>

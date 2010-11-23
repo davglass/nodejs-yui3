@@ -4,7 +4,7 @@ var express = require('express'),
     YUI = require('yui3').YUI;
 
 
-YUI({ debug: false, filter: 'min' }).use('express', 'node', function(Y) {
+YUI({ debug: false, filter: 'debug' }).use('express', 'node', function(Y) {
 
     var app = express.createServer();
 
@@ -104,6 +104,17 @@ YUI({ debug: false, filter: 'min' }).use('express', 'node', function(Y) {
                 }
             }
         });
+    });
+    
+    app.get('/pre', YUI.express({render: 'index.html', locals: {}}), function(req, res){
+        res.sub({
+            above_content: 'This was inserted above the content.',
+            title: 'Title #1',
+            title2: 'Title #2',
+            title3: 'Title #3',
+            title4: 'Title #4'
+        });
+        res.send();
     });
 
     app.listen(3000);
