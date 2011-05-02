@@ -11,7 +11,7 @@ for dir in ./*; do
     fi
     if test -f $dir/package.json; then
         echo "Installing from: $dir";
-        echo "npm install $dir/"
-        npm install $dir/
+        echo "npm install $dir/ -g"
+        npm install $dir/ -g
     fi
 done
