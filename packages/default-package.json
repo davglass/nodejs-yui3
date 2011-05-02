@@ -18,9 +18,6 @@
     "scripts": {
         "test": "make tests"
     },
-    "directories": {
-        "lib" : "lib"
-    },
     "main": "./lib/node-yui3",
     "licenses":[
         {
