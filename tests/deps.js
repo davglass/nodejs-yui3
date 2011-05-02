@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+/*
 try {
     require('yui3');
 } catch (e) {
@@ -18,3 +19,4 @@ try {
     console.log('yuitest needs to be installed');
     process.exit(1);
 }
+*/
