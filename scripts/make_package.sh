@@ -48,8 +48,6 @@ cat $dir/lib/yui3-rls.js >> $dir/lib/node-yui3.js
 wait
 rm $dir/lib/yui3-rls.js
 wait
-cp ./cli.js $dir
-wait
 cp ./packages/$pack-package.json ${dir}package.json
 wait
 ./scripts/merge_package_json.js $pack
