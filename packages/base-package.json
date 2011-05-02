@@ -7,8 +7,6 @@
     "devDependencies": {
         "jsdom": ">=0.1.23", 
         "htmlparser": ">=1.7.3",
-        "express": ">=1.0.7",
-        "connect": ">=0.5.0",
         "yuitest" : "*"
     }
 }
