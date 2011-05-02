@@ -9,11 +9,13 @@ bare: deps
 base: deps
 	@./scripts/make_package.sh base
 
-publish: deps install test
+publish: deps test
 	@./scripts/publish.sh
 
-dev: deps clean full install
-	@echo "make clean && make full && make install: DONE"
+dev: deps clean full 
+	@echo "make clean && make full DONE"
+	@echo "Now you can: npm install /path/to/source/yui3/build/full to install it locally"
+	@echo "Or you can: npm link /path/to/source/yui3/build/full to link it into your project"
 
 test: deps
 	@./scripts/test.sh
