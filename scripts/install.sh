@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "With NPM 1.0 you can not require a global package, global install will not work"
+exit 1;
+#Deprecated
 if ! test -d ./build; then
     echo "No build directory found"; exit 1;
 fi
@@ -11,7 +14,7 @@ for dir in ./*; do
     fi
     if test -f $dir/package.json; then
         echo "Installing from: $dir";
-        echo "npm install $dir/ -g"
-        npm install $dir/ -g
+        #echo "npm install $dir/ -g"
+        #npm install $dir/ -g
     fi
 done
