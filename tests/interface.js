@@ -27,7 +27,6 @@ var async = function(fn) {
     };
 };
 
-
 suite.add( new YUITest.TestCase({
     name: 'Interface',
     "yui3 useSync" : function () {
@@ -49,15 +48,7 @@ suite.add( new YUITest.TestCase({
         Assert.isObject(Y.GlobalConfig);
         Assert.isUndefined(Y.Loader);
     },
-    /*
-    "yui3 configure core 320 YUI" : function () {
-        var Y = yui3.configure({ core: '3.2.0' }).YUI;
-        Assert.isObject(Y);
-        Assert.isObject(Y.GlobalConfig);
-        Assert.areNotEqual(Y.GlobalConfig.base.indexOf('3.2.0'), -1);
-        Assert.isUndefined(Y.Loader);
-    },
-    */
+
     "yui3 configure core 330 YUI" : function () {
         var Y = yui3.configure({ core: '3.3.0' }).YUI;
         Assert.isObject(Y);
@@ -132,6 +123,27 @@ suite.add( new YUITest.TestCase({
 
 suite.add( new YUITest.TestCase({
     name: 'RLS',
+    "rls css none in env": async(function(data, next) {
+        yui3.rls({
+            m: 'loader-base,autocomplete',
+            env: 'attribute,attribute-base,attribute-complex,base,base-base,base-build,base-pluginhost,classnamemanager,console,dd,dd-constrain,dd-ddm,dd-ddm-base,dd-ddm-drop,dd-delegate,dd-drag,dd-drop,dd-drop-plugin,dd-proxy,dd-scroll,dom-base,dom-screen,dom-style,dom-style-ie,event-base,event-custom,event-custom-base,event-custom-complex,event-delegate,event-focus,event-mouseenter,event-resize,event-synthetic,features,get,intl,intl-base,io-base,jsonp,jsonp-url,lang/console,node,node-base,node-event-delegate,node-pluginhost,node-screen,node-style,oop,pluginhost,pluginhost-base,pluginhost-config,querystring-stringify-simple,rls,selector-css2,selector-native,substitute,widget,widget-base,widget-htmlparser,widget-uievents,yql,yui,yui-base,yui-later,yui-log,yui-throttle',
+            v: '3.3.0'
+        }, function(err, data) {
+            Assert.areEqual(data.css.length, 4);
+            next();
+        });
+    }),
+    "rls css in env": async(function(data, next) {
+        yui3.rls({
+            m: 'loader-base,autocomplete',
+            env: 'attribute,attribute-base,attribute-complex,base,base-base,base-build,base-pluginhost,classnamemanager,console,dd,dd-constrain,dd-ddm,dd-ddm-base,dd-ddm-drop,dd-delegate,dd-drag,dd-drop,dd-drop-plugin,dd-proxy,dd-scroll,dom-base,dom-screen,dom-style,dom-style-ie,event-base,event-custom,event-custom-base,event-custom-complex,event-delegate,event-focus,event-mouseenter,event-resize,event-synthetic,features,get,intl,intl-base,io-base,jsonp,jsonp-url,lang/console,node,node-base,node-event-delegate,node-pluginhost,node-screen,node-style,oop,pluginhost,pluginhost-base,pluginhost-config,querystring-stringify-simple,rls,selector-css2,selector-native,skin-sam-console,skin-sam-widget,substitute,widget,widget-base,widget-htmlparser,widget-skin,widget-uievents,yql,yui,yui-base,yui-later,yui-log,yui-throttle',
+            v: '3.3.0'
+        }, function(err, data) {
+            //Should only contain the Autocomplete CSS
+            Assert.areEqual(data.css.length, 2);
+            next();
+        });
+    }),
     "rls full": async(function(data, next) {
         yui3.rls({
             m: 'yui,loader,dd,widget,autocomplete,gallery-yql,yui2-datatable',
@@ -140,7 +152,7 @@ suite.add( new YUITest.TestCase({
             gv: '2010.09.22',
             '2in3v': '2.8.0'
         }, function(err, data) {
-            Assert.areEqual(data.js.length, 33);
+            Assert.areEqual(data.js.length, 42);
             Assert.areEqual(data.css.length, 4);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
@@ -156,7 +168,7 @@ suite.add( new YUITest.TestCase({
             '2in3v': '2.8.0'//,
             //filt: 'RAW',
         }, function(err, data) {
-            Assert.areEqual(data.js.length, 32);
+            Assert.areEqual(data.js.length, 41);
             Assert.areEqual(data.css.length, 4);
             Assert.areEqual((data.js.length +  data.css.length), Object.keys(data.d).length);
             next();
@@ -167,7 +179,7 @@ suite.add( new YUITest.TestCase({
             m: 'yui,loader,dd',
             v: '3.3.0'
         }, function(err, data) {
-            Assert.areEqual(data.js.length, 14);
+            Assert.areEqual(data.js.length, 22);
             Assert.areEqual(data.css.length, 0);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
@@ -178,7 +190,7 @@ suite.add( new YUITest.TestCase({
             m: 'yui,dd',
             v: '3.3.0'
         }, function(err, data) {
-            Assert.areEqual(data.js.length, 13);
+            Assert.areEqual(data.js.length, 21);
             Assert.areEqual(data.css.length, 0);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
@@ -195,6 +207,16 @@ suite.add( new YUITest.TestCase({
             next();
         });
     }),
+    "rls loader only": async(function(data, next) {
+        yui3.rls({
+            m: 'loader',
+            v: '3.3.0',
+            env: 'attribute,attribute-base,attribute-complex,bar2,base,base-base,base-build,base-pluginhost,baz,classnamemanager,console,dd,dd-constrain,dd-ddm,dd-ddm-base,dd-ddm-drop,dd-delegate,dd-drag,dd-drop,dd-drop-plugin,dd-proxy,dd-scroll,dom-base,dom-screen,dom-style,dom-style-ie,event-base,event-custom,event-custom-base,event-custom-complex,event-delegate,event-focus,event-mouseenter,event-resize,event-synthetic,features,foo,get,intl,intl-base,io-base,jsonp,jsonp-url,lang/console,node,node-base,node-event-delegate,node-pluginhost,node-screen,node-style,oop,pluginhost,pluginhost-base,pluginhost-config,querystring-stringify-simple,rls,selector-css2,selector-native,substitute,widget,widget-base,widget-htmlparser,widget-skin,widget-uievents,yql,yui,yui-base,yui-later,yui-log,yui-throttle'
+        }, function(err, data) {
+            Assert.areEqual(1, data.js.length);
+            next();
+        });
+    }),
     "rls invalid module": async(function(data, next) {
         yui3.rls({
             m: ['bogus-yui-module']
@@ -205,6 +227,7 @@ suite.add( new YUITest.TestCase({
             next();
         });
     }),
+    /*
     "rls yui customloader no serve loader": async(function(data, next) {
         yui3.rls({
             m: 'yui,dd',
@@ -214,7 +237,7 @@ suite.add( new YUITest.TestCase({
             }
         }, function(err, data) {
             Assert.areEqual(data.Y.config.loaderPath, __dirname + '/extras/loader-min.js');
-            Assert.areEqual(data.js.length, 13);
+            Assert.areEqual(data.js.length, 21);
             Assert.areEqual(data.css.length, 0);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
@@ -229,7 +252,7 @@ suite.add( new YUITest.TestCase({
             }
         }, function(err, data) {
             Assert.areEqual(data.Y.config.loaderPath, __dirname + '/extras/loader-debug.js');
-            Assert.areEqual(data.js.length, 13);
+            Assert.areEqual(data.js.length, 21);
             Assert.areEqual(data.css.length, 0);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
@@ -247,12 +270,13 @@ suite.add( new YUITest.TestCase({
             Assert.areEqual(data.Y.config.loaderPath, __dirname + '/extras/loader-min.js');
             Assert.areNotEqual(data.Y.config.loaderPath, data.js[1]);
             Assert.areEqual(data.Y.config._loaderPath, data.js[1]);
-            Assert.areEqual(data.js.length, 14);
+            Assert.areEqual(data.js.length, 22);
             Assert.areEqual(data.css.length, 0);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
         });
     }),
+    */
     "rls env": async(function(data, next) {
         yui3.rls({
             m: 'dd,widget,autocomplete,gallery-yql,yui2-datatable',
@@ -339,7 +363,6 @@ suite.add( new YUITest.TestCase({
             Assert.areEqual(data.js.length, 27);
             Assert.areEqual(data.css.length, 4);
             //TODO This test sucks..
-            Assert.isTrue(data.js[0].indexOf('yui3-core') > 0);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
         });
@@ -356,30 +379,10 @@ suite.add( new YUITest.TestCase({
         }, function(err, data) {
             Assert.areEqual(data.js.length, 27);
             Assert.areEqual(data.css.length, 4);
-            //TODO This test sucks..
-            Assert.isTrue(data.js[0].indexOf('yui3-core') > 0);
             Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
             next();
         });
     }),
-    /*
-    "rls version 32": async(function(data, next) {
-        yui3.rls({
-            m: 'dd,widget,gallery-yql,yui2-datatable',
-            env: 'yui,node,attribute',
-            v: '3.2.0',
-            parse: true,
-            gv: '2010.09.22',
-            '2in3v': '2.8.0'
-        }, function(err, data) {
-            Assert.areEqual(data.js.length, 16);
-            Assert.areEqual(data.css.length, 2);
-            Assert.isTrue(data.js[0].indexOf('3.2.0') > 0);
-            Assert.areEqual([].concat(data.js, data.css).length, Object.keys(data.d).length);
-            next();
-        });
-    }),
-    */
     "rls version gallery": async(function(data, next) {
         yui3.rls({
             m: 'dd,widget,gallery-yql,yui2-datatable',
@@ -427,7 +430,7 @@ suite.add( new YUITest.TestCase({
             v: '3.3.0'
         }, function(err, data) {
             Assert.isArray(data.js);
-            Assert.areEqual(11, data.js.length, 'Not enough files returned');
+            Assert.areEqual(15, data.js.length, 'Not enough files returned');
             next();
         });
     }),
@@ -438,7 +441,7 @@ suite.add( new YUITest.TestCase({
             v: '3.3.0'
         }, function(err, data) {
             Assert.isArray(data.js);
-            Assert.areEqual(13, data.js.length, 'Not enough files returned');
+            Assert.areEqual(17, data.js.length, 'Not enough files returned');
             next();
         });
     })
