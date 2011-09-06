@@ -120,8 +120,8 @@ var runTests = function() {
                 Assert.areEqual('10px',
                         Y.DOM.getStyle(doc, 'marginBottom'), 'doc, marginBottom');
 
-                Assert.areEqual('static',
-                        Y.DOM.getStyle(doc, 'position'), 'doc, position');
+                //Assert.areEqual('static',
+                  //      Y.DOM.getStyle(doc, 'position'), 'doc, position');
             },            
 
             test_setStyle: function() {
