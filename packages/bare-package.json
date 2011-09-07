@@ -2,7 +2,7 @@
     "name": "yui3-bare",
     "description": "YUI 3 Library on NodeJS - Bare - No Dependencies - Only install if you know what you are doing.",
     "devDependencies": {
-        "yui3-core": ">=3.3.0",
+        "yui3-core": ">=3.4.0",
         "jsdom": ">=0.1.23", 
         "htmlparser": ">=1.7.3",
         "yuitest" : "*"
