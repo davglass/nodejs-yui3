@@ -3,3 +3,4 @@ compiler/.lock-wscript
 compiler/build/*
 compiler/src/*
 tests/node_modules
+examples/node_modules
