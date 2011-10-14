@@ -2,11 +2,11 @@
     "name": "yui3-base",
     "description": "YUI 3 Library on NodeJS - Base - Includes yui3-core dependency - NO DOM SUPPORT",
     "dependencies": {
-        "yui3-core": ">=3.4.0"
+        "yui3-core": "3.4.x"
     },
     "devDependencies": {
-        "jsdom": ">=0.1.23", 
-        "htmlparser": ">=1.7.3",
+        "jsdom": "0.1.23 - 0.2.7", 
+        "htmlparser": "1.7.3",
         "yuitest" : "*"
     }
 }
