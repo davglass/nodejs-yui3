@@ -2,9 +2,9 @@
     "name": "yui3",
     "description": "YUI 3 Library on NodeJS - Full Install - All dependencies",
     "dependencies": {
-        "yui3-core": ">=3.4.0",
-        "jsdom": ">=0.1.23", 
-        "htmlparser": ">=1.7.3"
+        "yui3-core": "3.4.x",
+        "jsdom": "0.1.23 - 0.2.7", 
+        "htmlparser": "1.7.3"
     },
     "devDependencies": {
         "yuitest" : "*"
