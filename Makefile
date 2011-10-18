@@ -9,7 +9,7 @@ bare: deps
 base: deps
 	@./scripts/make_package.sh base
 
-publish: deps test
+publish: deps all test
 	@./scripts/publish.sh
 
 dev: deps clean full 
