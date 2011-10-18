@@ -109,6 +109,20 @@ suite.add( new YUITest.TestCase({
             next();
         });
     }),
+    "io test" : async(function (data, next) {
+        yui3.silent().use("loader", 'io', function (Y) {
+            Y.io('http://login.yahoo.com/', {
+                on: {
+                    success: function(id, e) {
+                        Assert.isObject(Y.Loader);
+                        Assert.isFunction(Y.io);
+                        //It made it here, no socket hang up
+                        next();
+                    }
+                }
+            });
+        });
+    }),
     "uploader test" : async(function (data, next) {
         var core = require('./node_modules/yui3/node_modules/yui3-core');
         yui3.configure({ debug: false, '2in3': false, gallery: false, yuiPath: core.path(), yuiCoreFile: 'build/yui/yui-debug.js' }).use("uploader", function (Y) {
