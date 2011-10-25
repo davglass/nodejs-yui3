@@ -35,7 +35,13 @@ YUI({
         headers: {
             foo: 'bar'
         },
-        data: 'test=post&this=data&testing=three',
+        //data: 'test=post&this=data&testing=three',
+        
+        data: {
+            test: 'post',
+            'this': 'data',
+            'testing': 'three'
+        },
         on: {
             start: function() {
                 Y.log('Start IO #2', 'info', 'io2');
@@ -44,7 +50,7 @@ YUI({
                 Y.log(sys.inspect(Y.JSON.parse(o.responseText)), 'info', 'io2');
             },
             failure: function(id, o) {
-                Y.log('IO FAILED', 'error', 'io2');
+                Y.log('IO #2 FAILED', 'error', 'io2');
             }
         }
     });
