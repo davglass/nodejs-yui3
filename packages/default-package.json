@@ -1,7 +1,7 @@
 {
     "version": "0.7.9",
     "author": "Dav Glass <davglass@gmail.com>",
-    "bugs": { "web" : "http://github.com/davglass/nodejs-yui3/issues" },
+    "bugs": { "url" : "http://github.com/davglass/nodejs-yui3/issues" },
     "os": ["darwin", "linux"],
     "contributors": [
         "Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me)",
