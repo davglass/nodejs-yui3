@@ -123,6 +123,25 @@ suite.add( new YUITest.TestCase({
             });
         });
     }),
+    "io get test with data" : async(function (data, next) {
+        yui3.silent().use("loader", 'io', function (Y) {
+            Y.io('http://login.yahoo.com/', {
+                method: 'GET',
+                data: {
+                    foo: 'nodejs',
+                    bar: 'davglass'
+                },
+                on: {
+                    complete: function(id, e) {
+                        Assert.isObject(Y.Loader);
+                        Assert.isFunction(Y.io);
+                        //It made it here, no socket hang up
+                        next();
+                    }
+                }
+            });
+        });
+    }),
     "io post test" : async(function (data, next) {
         yui3.silent().use("loader", 'io', function (Y) {
             Y.io('http://login.yahoo.com/', {
