@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var sys = require('sys'),
+var util = require('util'),
     fs = require('fs');
 
 var YUI = require("yui3").YUI;
@@ -195,11 +195,11 @@ var runTests = function() {
                 ArrayAssert.itemsAreEqual(all, $('#root-test li'), 'document');
                 ArrayAssert.itemsAreEqual([], $('#root-tes li', Y.DOM.byId('demo')), 'false id document');
                 
-                //sys.puts('##------------------------------------------------------');
-                //sys.puts(sys.inspect(Y.DOM.byId('mod1')));
-                //sys.puts(sys.inspect($('a span, a', Y.DOM.byId('mod1'))));
-                //sys.puts(sys.inspect(Y.DOM.byId('mod1')));
-                //sys.puts('##------------------------------------------------------');
+                //util.puts('##------------------------------------------------------');
+                //util.puts(util.inspect(Y.DOM.byId('mod1')));
+                //util.puts(util.inspect($('a span, a', Y.DOM.byId('mod1'))));
+                //util.puts(util.inspect(Y.DOM.byId('mod1')));
+                //util.puts('##------------------------------------------------------');
                 Assert.areEqual(
                     $('a span, a', Y.DOM.byId('mod1')).length,
                     $('a, a span', Y.DOM.byId('mod1')).length,

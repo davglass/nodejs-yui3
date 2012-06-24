@@ -1,4 +1,4 @@
-var sys = require('sys'),
+var util = require('util'),
     fs = require('fs');
 
 var YUI = require("yui3").YUI;

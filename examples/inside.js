@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var sys = require('sys');
+var util = require('util');
 
 var YUI = require("yui3").YUI;
 
