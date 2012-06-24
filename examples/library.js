@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var start = (new Date()).getTime();
-var sys = require('sys');
+var util = require('util');
 var YUI = require("yui3").YUI;
 
 
@@ -9,8 +9,8 @@ YUI({
     debug: true
 }).use('json', 'base', 'yql', function(Y) {
 
-    //sys.puts('Inside: ' + sys.inspect(process.memoryUsage()));
-    //Logger outputs with sys.puts
+    //util.puts('Inside: ' + util.inspect(process.memoryUsage()));
+    //Logger outputs with util.puts
     Y.log('This is a test');
     //Lang is available
     Y.log('Test: ' + Y.Lang.isBoolean(true), 'debug', 'myapp');
@@ -39,7 +39,7 @@ YUI({
     });
     o.test(); //Should fire the one:foo Event.
 
-    //sys.puts(sys.inspect(Y));
+    //util.puts(util.inspect(Y));
     
     Y.YQL('select * from github.user.info where (id = "davglass")', function(r) {
         //Do something here.
