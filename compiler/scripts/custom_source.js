@@ -8,7 +8,7 @@ var yui3 = require('yui3'),
 
     post = path.join(__dirname, '../src/lib');
 
-if (!path.existsSync(post)) {
+if (!fs.existsSync(post)) {
     fs.mkdirSync(post, 0777);
 }
 

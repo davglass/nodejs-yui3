@@ -3,7 +3,7 @@
 var fs = require('fs'),
     sys = require(process.binding('natives').util ? 'util' : 'sys'),
     path = require('path'),
-    exists = path.existsSync,
+    exists = fs.existsSync,
     argv = process.argv.splice(2);
 
 if (argv.length === 0) {
