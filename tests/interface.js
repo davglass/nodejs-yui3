@@ -496,6 +496,27 @@ suite.add( new YUITest.TestCase({
             Assert.areEqual(17, data.js.length, 'Not enough files returned');
             next();
         });
+    }),
+    "rls node, dial in m with dial in env should include node in sorted": async(function(data, next) {
+        yui3.rls({
+            m: 'node,dial',
+            env: 'node',
+            v: '3.3.0'
+        }, function(err, data) {
+            Assert.isArray(data.js);
+            // Node should not be in the JavaScript returned.
+            Assert.isFalse(data.js.some(function(file) {
+                return file.indexOf('node-') !== -1;
+            }));
+            // Node is required for dial to work correctly.
+            // We should include node (and its deps)
+            // in data.sorted, but we don't need the files
+            // since it's already on the page.
+            Assert.isTrue(data.sorted.some(function(module) {
+                return module === 'node'
+            }));
+            next();
+        });
     })
     */
 }));
